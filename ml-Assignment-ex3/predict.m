@@ -21,6 +21,14 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(m, 1) X];
+a =sigmoid(X*Theta1');
+a = [ones(m, 1) a];
+    h = sigmoid(a*Theta2');
+    kind = max(h, [], 2);
+    for i = 1: m
+     p(i) = find(h(i,:) == kind(i));
+end
 
 
 

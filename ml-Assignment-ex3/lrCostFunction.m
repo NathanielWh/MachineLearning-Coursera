@@ -14,12 +14,11 @@ grad = zeros(size(theta));
 
 % ====================== YOUR CODE HERE ======================
 
-J = sum(( -y .* log(sigmoid(X * theta)) ) - ( (1 - y) .* log(1 - sigmoid(X * theta)) )) / m ;
+J = (sum(( -y .* log(sigmoid(X * theta)) ) - ( (1 - y) .* log(1 - sigmoid(X * theta)) )) / m) + ( (lambda/(2*m)) * sum(theta(2:length(theta)).^2) );
 
+grad(1,:) = sum((sigmoid(X*theta) - y) .* X(:,1)) / m;
 
-grad = sum((sigmoid(X*theta) - y) .* X) / m
-
-
+grad(2:size(grad,1),:) = (sum((sigmoid(X*theta) - y) .* X(:, 2:size(X,2))) / m) + (lambda/m .* theta(2:size(theta,1)))';
 
 
 % Instructions: Compute the cost of a particular choice of theta.

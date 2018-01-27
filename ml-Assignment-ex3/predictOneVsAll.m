@@ -31,7 +31,12 @@ X = [ones(m, 1) X];
 %       
 
 
-
+ pro = X * all_theta';
+ % m * num_labels
+ kind = max(pro, [], 2);
+ for i = 1: m
+     p(i) = find(pro(i,:) == kind(i));
+end
 
 
 
